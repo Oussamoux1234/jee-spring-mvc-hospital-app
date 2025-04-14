@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <title>Patients</title>
   <link rel="stylesheet" type = "text/css" href = "webjars/bootstrap/5.3.5/css/bootstrap.min.css" />
+  <link rel="stylesheet" type = "text/css" href = "webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+
 </head>
 <body>
 <div class = "card">
    <div class="card-header"><h1 class="title">Patients</h1></div>
   <div class = "card-body">
+    <form th:action="@{index}" method="get">
+
+      <label for="keyw">
+        Keyword :
+      </label>
+      <input type="text" name="keyword" id="keyw" th:value="${keyword}">
+      <button type="submit" class="btn btn-info">
+        <i class="bi bi-search"></i>      </button>
+    </form>
 
   <table class="table table-striped" >
     <thead>
@@ -36,12 +47,21 @@
       <td th:text="${patient.malade}"></td>
       <td th:text="${patient.score}"></td>
       <td>
-        <a  onclick="return confirm('are you sure?')" th:href="@{/delete(id=${patient.id})}" class="btn btn-danger"> Delete</a>
+        <a  onclick="return confirm('are you sure?')" th:href="@{/delete(id=${patient.id},keyword=${keyword},page=${currentP})}" class="btn btn-danger">
+        <i class="bi bi-trash"></i>
+        </a>
       </td>
 
     </tr>
     </tbody>
   </table>
+    <ul class=" nav nav-pills">
+      <li th:each="page,status:${pages}">
+      <a th:class="${currentP==status.index? 'btn btn-info ms-1':'btn btn-outline-info ms-1'}"
+               th:href="@{index(page=${status.index},keyword=${keyword})}"
+              th:text="${status.index}"></a>
+      </li>
+    </ul>
   </div>
 
 
