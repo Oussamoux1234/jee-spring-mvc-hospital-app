@@ -39,6 +39,8 @@
       <td>Malade</td>
       <td>Score</td>
       <td>Delete</td>
+      <td>Edit</td>
+
     </tr>
     </thead>
     <tbody>
@@ -55,7 +57,7 @@
         </a>
       </td>
       <td>
-        <a   th:href="@{/editPatient(id=${patient.id},keyword=${keyword},page=${currentP})}" class="btn btn-danger">
+        <a th:href="@{/editPatient(id=${patient.id},keyword=${keyword},page=${currentP})}" class="btn btn-primary btn-sm ">
           <i class="bi bi-pen"></i>
         </a>
       </td>
