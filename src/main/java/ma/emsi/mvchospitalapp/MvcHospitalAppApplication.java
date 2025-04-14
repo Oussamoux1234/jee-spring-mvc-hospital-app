@@ -7,11 +7,12 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
 
 @SpringBootApplication
-public class MvcHospitalAppApplication implements CommandLineRunner {
+public class MvcHospitalAppApplication {
 
     @Autowired
     private PatientRepository patientRepository;
@@ -20,26 +21,28 @@ public class MvcHospitalAppApplication implements CommandLineRunner {
         SpringApplication.run(MvcHospitalAppApplication.class, args);
 
     }
-    @Override
-    public void run(String... args) throws Exception {
-        patientRepository.save(Patient.builder().nom("moha")
-                .dataNissance(new Date())
-                .gender("male")
-                .malade(false).score(21).build());
-        patientRepository.save(Patient.builder().nom("nora")
-                .dataNissance(new Date())
-                .gender("female")
-                .malade(false).score(41).build());
-        patientRepository.save(Patient.builder().nom("mohamed")
-                .dataNissance(new Date())
-                .gender("male")
-                .malade(true).score(31).build());
-        patientRepository.save(Patient.builder().nom("arias")
-                .dataNissance(new Date())
-                .gender("male")
-                .malade(false).score(231).build());
-        patientRepository.findAll().forEach(System.out::println);
-    }
+    //@Bean
+    CommandLineRunner commandLineRunner(PatientRepository patientRepository) {
+        return args -> {
+            patientRepository.save(Patient.builder().nom("mohhha")
+                    .dataNissance(new Date())
+                    .gender("male")
+                    .malade(false).score(211).build());
+            patientRepository.save(Patient.builder().nom("nora")
+                    .dataNissance(new Date())
+                    .gender("female")
+                    .malade(false).score(411).build());
+            patientRepository.save(Patient.builder().nom("mohamed")
+                    .dataNissance(new Date())
+                    .gender("male")
+                    .malade(true).score(131).build());
+            patientRepository.save(Patient.builder().nom("arias")
+                    .dataNissance(new Date())
+                    .gender("male")
+                    .malade(false).score(231).build());
+            patientRepository.findAll().forEach(System.out::println);
+        };
+    };
 
 
 }

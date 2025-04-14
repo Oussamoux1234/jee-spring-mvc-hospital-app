@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout1">
+<head>
+    <meta charset="UTF-8">
+    <title> form Patients</title>
+  <link rel="stylesheet" type = "text/css" href = "webjars/bootstrap/5.3.5/css/bootstrap.min.css" />
+  <link rel="stylesheet" type = "text/css" href = "webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container">
+    <div class="col-md-6 offset-3 mt-5">
+  <form method="post" th:action="@{/save}">
+      <div class="form-group">
+          <div>
+          <label class="">Nom</label>
+          <input type="text" name="nom" class="form-control" th:value="${patient.nom}" >
+          <span class="text-danger" th:errors="${patient.nom}"></span>
+          </div>
+          <div>
+              <label class="">Gender</label>
+              <input type="text" name="gender" class="form-control" th:value="${patient.gender}" >
+              <span class="text-danger" th:errors="${patient.gender}"></span>
+          </div>
+          <div>
+              <label class="">date Naissance</label>
+              <input type="date" name="dataNissance" class="form-control" th:value="${patient.dataNissance}" >
+              <span class="text-danger" th:errors="${patient.dataNissance}"></span>
+          </div>
+          <div>
+              <label class="">Score</label>
+              <input type="number" name="score"  class="form-control" th:value="${patient.score}" >
+              <span class="text-danger" th:errors="${patient.score}"></span>
+          </div>
+          <div>
+              <label class="">malade</label>
+              <input type="checkbox" name="malade" th:value="${patient.malade}" >
+              <span class="text-danger" th:errors="${patient.malade}"></span>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+  </form>
+    </div>
+</div>
+</div>
+</body>
+</html>
